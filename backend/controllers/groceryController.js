@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Get all groceries
 const getGroceries = async (req, res) => {
   // Sorts all groceries in descending order
-  const groceries = await GroceryList.find({}).sort({name: 1});
+  const groceries = await GroceryList.find({}).sort({name: 1}).collation({ locale: "en", caseLevel: true });
 
   res.status(200).json(groceries);
 };
