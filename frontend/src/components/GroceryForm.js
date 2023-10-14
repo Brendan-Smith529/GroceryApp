@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useGroceriesContext } from "../hooks/useGroceriesContext";
 
 const GroceryForm = () => {
-  const { dispatch } = useGroceriesContext()
+  const { dispatch } = useGroceriesContext();
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [brand, setBrand] = useState('');
@@ -39,14 +39,11 @@ const GroceryForm = () => {
       setEmptyFields([]);
       console.log("Grocery Added", json);
  
-      const updatedGroceries = await fetch('api/groceries');
+      const updatedGroceries = await fetch('/api/groceries');
       const updatedJson = await updatedGroceries.json();
         
       if (updatedGroceries.ok)
         dispatch({type: 'SET_GROCERIES', payload: updatedJson});
-
-      /* Adds to top and calls CREATE_WORKOUT context; omitted for presentation */
-      // dispatch({type: 'CREATE_WORKOUT', payload: json});
     }
   }
 
@@ -57,24 +54,24 @@ const GroceryForm = () => {
       <label>Item Name</label>
       <input
         type="text"
-        onChange={(e) => setName(e.target.value)}
         value={name}
+        onChange={(e) => setName(e.target.value)}
         className={emptyFields.includes('name') ? 'error' : ''}
       />
 
       <label>Quantity</label>
       <input
         type="number"
-        onChange={(e) => setQuantity(e.target.value)}
         value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
         className={emptyFields.includes('quantity') ? 'error' : ''}
       />
 
       <label>Brand:</label>
       <input
         type="text"
-        onChange={(e) => setBrand(e.target.value)}
         value={brand}
+        onChange={(e) => setBrand(e.target.value)}
         className={emptyFields.includes('brand') ? 'error' : ''}
       />
       

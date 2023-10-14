@@ -27,7 +27,6 @@ const getGrocery = async (req, res) => {
 // Create a grocery
 const createGrocery = async (req, res) => {
   const {name, quantity, brand} = req.body;
-
   let emptyFields = [];
 
   if (!name)
@@ -71,6 +70,22 @@ const deleteGrocery = async(req, res) => {
 
 // Update a grocery
 const updateGrocery = async (req, res) => {
+  const {name, quantity, brand} = req.body;
+  let emptyFields = [];
+
+  if (!name)
+    emptyFields.push('name');
+
+  if (!quantity)
+    emptyFields.push('quantity');
+
+  if (!brand)
+    emptyFields.push('brand');
+
+  if (emptyFields.length > 0)
+    return res.status(400).json({ error: 'Please fill in the required fields', emptyFields });
+
+
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id))

@@ -18,7 +18,7 @@ export const groceriesReducer = (state, action) => {
     default:
       return state;
   }
-}
+};
 
 export const GroceriesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(groceriesReducer, {

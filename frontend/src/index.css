@@ -81,7 +81,7 @@ header a
   color: #555;
 }
 
-.grocery-details span
+.grocery-details #delete
 {
   position: absolute;
   top: 20px;
@@ -98,6 +98,25 @@ header a
   -webkit-animation: fadein 1s; /* Safari and Chrome */
   -o-animation: fadein 1s; /* Opera */
 }
+
+.grocery-details #update
+{
+  position: absolute;
+  top: 20px;
+  right: 75px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+
+  /* Fade-in Effect */
+  animation: fadein 1s;
+  -moz-animation: fadein 1s; /* Firefox */
+  -webkit-animation: fadein 1s; /* Safari and Chrome */
+  -o-animation: fadein 1s; /* Opera */
+}
+
 
 /* General */
 @keyframes fadein
@@ -152,7 +171,7 @@ header a
 }
 
 /* new workout form */
-label, input
+label, input, textarea
 {
   display: block;
 }
@@ -166,6 +185,18 @@ input
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+form #cancel
+{
+  background: var(--error);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  margin-left: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 form button
