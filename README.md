@@ -6,6 +6,7 @@ To-Do List:
  - Search for item
     - Fuzzy search
     - Lazy load
- - Users and signup
  - Email verification
  - Forgot password button
+ - Format Login/Register buttons better
+ - {name}'s Grocery List (from Grocery List with name on right)
