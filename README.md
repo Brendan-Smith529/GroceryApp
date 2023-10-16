@@ -10,4 +10,3 @@ To-Do List:
  - Forgot password button
  - Format Login/Register buttons better
  - {name}'s Grocery List (from Grocery List with name on right)
- - Fix adding item

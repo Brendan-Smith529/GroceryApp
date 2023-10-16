@@ -48,7 +48,10 @@ const GroceryForm = () => {
       setError(null);
       setEmptyFields([]);
  
-      const updatedGroceries = await fetch('/api/groceries');
+      const updatedGroceries = await fetch('/api/groceries', {
+        headers: {'Authorization': `Bearer ${user.token}`},
+      });
+
       const updatedJson = await updatedGroceries.json();
         
       if (updatedGroceries.ok)
