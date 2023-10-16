@@ -1,11 +1,13 @@
 import { useGroceriesContext } from "../hooks/useGroceriesContext";
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // Date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const GroceryDetails = ({ grocery }) => {
   const { dispatch } = useGroceriesContext();
+  const { user } = useAuthContext();
 
   // Determines whether edit form is shown
   const [showForm, setShowForm] = useState(false);
@@ -22,8 +24,14 @@ const GroceryDetails = ({ grocery }) => {
   }
 
   const handleDeleteClick = async() => {
+    if (!user)
+      return;
+
     const response = await fetch('/api/groceries/' + grocery._id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     });
 
     const json = await response.json();
@@ -43,13 +51,17 @@ const GroceryDetails = ({ grocery }) => {
     const handleSubmit = async(e) => {
       e.preventDefault();
 
+      if (!user)
+        return;
+
       const newGrocery = { name, quantity, brand };
 
       const response = await fetch('/api/groceries/' + grocery._id, {
         method: 'PATCH',
         body: JSON.stringify(newGrocery),
         headers: {
-          'Content-Type': 'application/JSON'
+          'Content-Type': 'application/JSON',
+          'Authorization': `Bearer ${user.token}`
         }
       });
 

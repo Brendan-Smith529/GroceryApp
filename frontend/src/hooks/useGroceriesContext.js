@@ -8,4 +8,4 @@ export const useGroceriesContext = () => {
     throw Error('useGroceriesContext must be used inside a GroceryContextProvider');
 
   return context;
-}
+};
