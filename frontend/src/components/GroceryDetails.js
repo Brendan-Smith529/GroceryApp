@@ -77,9 +77,13 @@ const GroceryDetails = ({ grocery }) => {
       if (response.ok)
       {
         changeWhetherShown();
-        const updatedGroceries = await fetch('/api/groceries');
-        const updatedJson = await updatedGroceries.json();
+ 
+        const updatedGroceries = await fetch('/api/groceries', {
+          headers: {'Authorization': `Bearer ${user.token}`},
+        });
 
+        const updatedJson = await updatedGroceries.json();
+          
         if (updatedGroceries.ok)
           dispatch({type: 'SET_GROCERIES', payload: updatedJson});
       }
