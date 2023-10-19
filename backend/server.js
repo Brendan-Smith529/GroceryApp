@@ -7,6 +7,7 @@ const userRoutes = require('./routes/user');
 
 // Creates an express app
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
@@ -24,7 +25,7 @@ app.use('/api/user', userRoutes);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     // Listen for requests
-    app.listen(process.env.PORT, () => {
+    app.listen(PORT || 4000, () => {
       console.log("Connected to db & listening on port", process.env.PORT);
     });
   })
