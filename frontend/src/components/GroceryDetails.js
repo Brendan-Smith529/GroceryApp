@@ -1,6 +1,7 @@
 import { useGroceriesContext } from "../hooks/useGroceriesContext";
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { API_URL } from '../api';
 
 // Date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -27,7 +28,7 @@ const GroceryDetails = ({ grocery }) => {
     if (!user)
       return;
 
-    const response = await fetch('/api/groceries/' + grocery._id, {
+    const response = await fetch(API_URL + '/api/groceries/' + grocery._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -56,7 +57,7 @@ const GroceryDetails = ({ grocery }) => {
 
       const newGrocery = { name, quantity, brand };
 
-      const response = await fetch('/api/groceries/' + grocery._id, {
+      const response = await fetch(API_URL + '/api/groceries/' + grocery._id, {
         method: 'PATCH',
         body: JSON.stringify(newGrocery),
         headers: {
@@ -78,7 +79,7 @@ const GroceryDetails = ({ grocery }) => {
       {
         changeWhetherShown();
  
-        const updatedGroceries = await fetch('/api/groceries', {
+        const updatedGroceries = await fetch(API_URL + '/api/groceries', {
           headers: {'Authorization': `Bearer ${user.token}`},
         });
 

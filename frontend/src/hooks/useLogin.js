@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from './useAuthContext';
+import { API_URL } from '../api';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -10,7 +11,8 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch('/api/user/login', {
+    // console.log(process.env.API_URL);
+    const response = await fetch(API_URL + '/api/user/login', {
       method: 'POST',
       body: JSON.stringify({email, password}),
       headers: {'Content-Type': 'application/JSON'}

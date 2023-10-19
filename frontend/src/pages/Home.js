@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useGroceriesContext } from "../hooks/useGroceriesContext";
 import { useAuthContext } from '../hooks/useAuthContext';
+import { API_URL } from '../api';
 
 // Components
 import GroceryDetails from '../components/GroceryDetails';
@@ -12,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchGroceries = async() => {
-      const response = await fetch("/api/groceries", {
+      const response = await fetch(API_URL + "/api/groceries", {
         headers: {
           'Authorization' : `Bearer ${user.token}` // `` cause template
         }

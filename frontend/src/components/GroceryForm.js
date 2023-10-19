@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useGroceriesContext } from "../hooks/useGroceriesContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { API_URL } from '../api';
 
 const GroceryForm = () => {
   const { dispatch } = useGroceriesContext();
@@ -23,7 +24,7 @@ const GroceryForm = () => {
 
     const grocery = {name, quantity, brand};
 
-    const response = await fetch('/api/groceries', {
+    const response = await fetch(API_URL + '/api/groceries', {
       method: 'POST',
       body: JSON.stringify(grocery),
       headers: {
@@ -48,7 +49,7 @@ const GroceryForm = () => {
       setError(null);
       setEmptyFields([]);
  
-      const updatedGroceries = await fetch('/api/groceries', {
+      const updatedGroceries = await fetch(API_URL + '/api/groceries', {
         headers: {'Authorization': `Bearer ${user.token}`},
       });
 
